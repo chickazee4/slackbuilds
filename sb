@@ -1,0 +1,6 @@
+#!/bin/sh
+WD=`pwd`
+NAME=`basename ${WD}`
+/bin/sh ./${NAME}.SlackBuild
+cp /tmp/${NAME}*.tgz .
+installpkg ${NAME}*.tgz
