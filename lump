@@ -1,0 +1,31 @@
+#!/bin/sh
+# run this from the repository root
+
+if [ ! -d _out ]; then
+	mkdir _out
+fi
+
+find -name '*.tgz' -exec cp -u '{}' _out \;
+rm _out/zoom* _out/discord* _out/zulu*
+
+DATE=$(date +%Y%m%d)
+SUFFIX=$DATE
+INDEX=0
+while [ -f rc-$SUFFIX.tar ]; do
+	INDEX=`expr $INDEX + 1` 
+	SUFFIX=$DATE-$INDEX
+done
+
+tar cf rc-$SUFFIX.tar _out/
+
+find _out -type f -name "*.tgz" -size +20M -delete
+
+SUFFIX=$DATE
+INDEX=0
+while [ -f rcsmall-$SUFFIX.tar ]; do
+	INDEX=`expr $INDEX + 1` 
+	SUFFIX=$DATE-$INDEX
+done
+
+tar cf rcsmall-$SUFFIX.tar _out/
+rm -r _out
