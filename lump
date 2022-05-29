@@ -5,6 +5,10 @@ if [ ! -d _out ]; then
 	mkdir _out
 fi
 
+if [ ! -d _releases ]; then
+	mkdir _releases
+fi
+
 find -name '*.tgz' -exec cp -u '{}' _out \;
 rm _out/zoom* _out/discord* _out/zulu*
 
@@ -16,7 +20,7 @@ while [ -f rc-$SUFFIX.tar ]; do
 	SUFFIX=$DATE-$INDEX
 done
 
-tar cf rc-$SUFFIX.tar _out/
+tar cf _releases/rc-$SUFFIX.tar _out/
 
 find _out -type f -name "*.tgz" -size +20M -delete
 
@@ -27,5 +31,5 @@ while [ -f rcsmall-$SUFFIX.tar ]; do
 	SUFFIX=$DATE-$INDEX
 done
 
-tar cf rcsmall-$SUFFIX.tar _out/
+tar cf _releases/rcsmall-$SUFFIX.tar _out/
 rm -r _out
