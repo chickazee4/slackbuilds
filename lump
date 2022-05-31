@@ -1,6 +1,9 @@
 #!/bin/sh
 # run this from the repository root
 
+set -e
+echo "Building..."
+
 if [ ! -d _out ]; then
 	mkdir _out
 fi
@@ -9,27 +12,35 @@ if [ ! -d _releases ]; then
 	mkdir _releases
 fi
 
-find -name '*.tgz' -exec cp -u '{}' _out \;
+find . -name '*.tgz' -not -path "./_out/*" -fprintf _out/MANIFEST.LARGE "%f\n" -exec rsync '{}' _out \;
+echo "Consolidated packages."
 rm _out/zoom* _out/discord* _out/zulu*
 
 DATE=$(date +%Y%m%d)
 SUFFIX=$DATE
 INDEX=0
-while [ -f rc-$SUFFIX.tar ]; do
+while [ -f _releases/rc-$SUFFIX.tar ]; do
 	INDEX=`expr $INDEX + 1` 
 	SUFFIX=$DATE-$INDEX
 done
 
-tar cf _releases/rc-$SUFFIX.tar _out/
+tar -C _out -cf _releases/rc-$SUFFIX.tar `find _out -name '*.tgz' -printf '%f\\n'`
+mv _out/MANIFEST.LARGE _releases/MANIFEST-$SUFFIX.LARGE
+echo "Built LARGE release rc-${SUFFIX}."
 
 find _out -type f -name "*.tgz" -size +20M -delete
+find _out -name '*.tgz' -fprintf _out/MANIFEST.SMALL "%f\n"
 
 SUFFIX=$DATE
 INDEX=0
-while [ -f rcsmall-$SUFFIX.tar ]; do
+while [ -f _releases/rcsmall-$SUFFIX.tar ]; do
 	INDEX=`expr $INDEX + 1` 
 	SUFFIX=$DATE-$INDEX
 done
 
-tar cf _releases/rcsmall-$SUFFIX.tar _out/
+tar -C _out -cf _releases/rcsmall-$SUFFIX.tar `find _out -name '*.tgz' -printf '%f\\n'`
+mv _out/MANIFEST.SMALL _releases/MANIFEST-$SUFFIX.SMALL
+echo "Built SMALL release rcsmall-${SUFFIX}."
+
 rm -r _out
+echo "Cleanup done. See _releases/ directory for release objects."
