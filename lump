@@ -14,7 +14,7 @@ fi
 
 find . -name '*.tgz' -not -path "./_out/*" -fprintf _out/MANIFEST.LARGE "%f\n" -exec rsync '{}' _out \;
 echo "Consolidated packages."
-rm _out/zoom* _out/discord* _out/zulu*
+rm _out/zoom* _out/discord* _out/zulu* _out/chaotica*
 
 DATE=$(date +%Y%m%d)
 SUFFIX=$DATE

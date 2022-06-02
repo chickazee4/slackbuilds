@@ -1,0 +1,1 @@
+This is an original script by me to install the Chaotica fractal rendering software. It is proprietary, so I can't distribute a binary package. You will need to download the Linux binaries from https://chaoticafractals.com/download and put them in the SlackBuild folder before running `sb`.
