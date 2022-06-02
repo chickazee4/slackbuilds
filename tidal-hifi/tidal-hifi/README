@@ -1,0 +1,9 @@
+tidal-hifi
+
+tidal-hifi is an Electron-based wrapper for the Tidal music streaming service 
+web client. It is differentiated from other wrappers because it properly 
+integrates Widevine and therefore offers the ability to listen to Hi-Fi songs.
+You will need Node.js in order to build the SlackBuild. You may need a Widevine
+library installed in order to listen to Hi-Fi. 
+
+Last.fm scrobbling does not work; a workaround is to use rescrobbled.

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Chaotica
+Comment=Fractal flame renderer
+Exec=/opt/chaotica/chaotica
+GenericName=Fractal Renderer
+Icon=chaotica
+StartupNotify=true
+Terminal=false
+Type=Application
+Encoding=UTF-8
+Categories=Application;Graphics;

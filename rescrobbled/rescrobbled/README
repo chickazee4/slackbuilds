@@ -1,0 +1,11 @@
+Rescrobbled is a music scrobbler daemon. It detects 
+active media players running on D-Bus using MPRIS, 
+automatically updates "now playing" status, and 
+scrobbles songs to Last.fm or ListenBrainz-compatible 
+services as they play.
+
+This SlackBuild will download all requisites, but
+you need to have cargo and rustc. In order to use 
+the software, you will need to have a config 
+file. Please see the website (listed in slack-desc)
+for configuration formatting instructions. 
