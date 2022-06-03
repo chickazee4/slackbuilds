@@ -1,1 +1,5 @@
 If you need to use the last.fm integration, consider installing rescrobbled (also available in the repository), as it is broken in the program.
+
+The package is too large for Github so it has been split into two parts. To join them back together:
+
+cat tidal-hifi-*-x86_64-1_SBo.tgz.1 tidal-hifi-*-x86_64-1_SBo.tgz.tgz.2 > tidal-hifi-3.1.0-x86_64-1_SBo.tgz
